@@ -6,9 +6,13 @@ public class ArticleEnSolde extends Article{
     int remise;
 
     // constractor
-    ArticleEnSolde(int code, double prix,int remise) {
+    ArticleEnSolde(int code, double prix,int remise) throws Exception {
         super(code, prix);
-        this.remise = remise;
+        if(remise>=0 && remise<=90){
+            this.remise = remise;
+        }else{
+            throw new Exception("la remise est invalide");
+        }
     }
 
 
@@ -18,13 +22,10 @@ public class ArticleEnSolde extends Article{
     }
 
     public void setRemise(int remise) throws Exception {
-        Pattern pa = Pattern.compile("[0-9]",Pattern.LITERAL);
-        Matcher ma = pa.matcher(String.valueOf(remise));
-
-        if(!ma.find()){
-            throw new Exception("la remise est invalide");
-        }else{
+        if(remise>=0 && remise<=90){
             this.remise = remise;
+        }else{
+            throw new Exception("la remise est invalide");
         }
     }
 
